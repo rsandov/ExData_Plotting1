@@ -1,9 +1,12 @@
-### Proyecto 1. Exploratory Data Analysis
-## Rodrigo Sandoval ALmazan
+### Rodrigo Sandoval Almazan Assignment 1- EDA
+## plot1.R
+# Loading and subsetting  data set
+dataFile <- "./household_power_consumption.txt"
+data <- read.table(dataFile, header=TRUE, sep=";", stringsAsFactors=FALSE, dec=".")
+subSetData <- data[data$Date %in% c("1/2/2007","2/2/2007") ,]
 
-d = read.table("household_power_consumption.txt")  ## read the file
-library(dplyr)  ### Open Dplyr
-tbl_df(d)  ## transform in data frame
-table1  <- select(d, contains("2007-02-01"))
-table 2  <- select(d, contains("2007-02-02"))
-table  <- table1 + table2  ## create the work dataframe
+# Creating plot1.R 
+globalActivePower <- as.numeric(subSetData$Global_active_power)
+png("plot1.png", width=480, height=480)
+hist(globalActivePower, col="red", main="Global Active Power", xlab="Global Active Power (kilowatts)")
+dev.off()
